@@ -17,8 +17,8 @@ class NotesApp extends StatelessWidget {
       routes: {
         NotesView.id: (context) => const NotesApp(),
       },
-      initialRoute: NotesView.id,
-      home: Scaffold(),
+      // initialRoute: NotesView.id,
+      home: const NotesView(),
     );
   }
 }
