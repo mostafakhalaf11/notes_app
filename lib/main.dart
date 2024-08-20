@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'views/edit_note_view.dart';
 import 'views/notes_view.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class NotesApp extends StatelessWidget {
       theme: ThemeData(brightness: Brightness.dark, fontFamily: 'Poppins'),
       routes: {
         NotesView.id: (context) => const NotesApp(),
+        EditNoteView.id: (context) => const EditNoteView(),
       },
       // initialRoute: NotesView.id,
       home: const NotesView(),
