@@ -17,7 +17,6 @@ class NotesView extends StatelessWidget {
           icon: Icons.search,
         ),
       ),
-      resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
