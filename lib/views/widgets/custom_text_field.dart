@@ -44,7 +44,7 @@ class _CustomFormTextfieldState extends State<CustomFormTextfield> {
             fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey),
         hintText: widget.hintText,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        hintStyle: const TextStyle(color: Colors.blueGrey, fontSize: 16),
+        hintStyle: const TextStyle(color: Colors.grey, fontSize: 16),
         errorBorder: errorBorder(),
         focusedErrorBorder: focusErrorBorder(),
         enabledBorder: enabledBorder(),
