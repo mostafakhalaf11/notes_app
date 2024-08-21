@@ -3,9 +3,9 @@ import '../../helpers/build_borders.dart';
 
 class CustomFormTextfield extends StatefulWidget {
   final String? hintText;
-  final String? validateMessage;
   final int? textFieldLength;
   final void Function(String)? onChanged;
+  final void Function(String?)? onSaved;
   final bool isPassword;
   final Widget? textLabel;
 
@@ -13,10 +13,10 @@ class CustomFormTextfield extends StatefulWidget {
       {super.key,
       this.onChanged,
       this.hintText,
-      this.validateMessage,
       this.isPassword = false,
       this.textLabel,
-      this.textFieldLength});
+      this.textFieldLength,
+      this.onSaved});
 
   @override
   State<CustomFormTextfield> createState() => _CustomFormTextfieldState();
@@ -28,12 +28,13 @@ class _CustomFormTextfieldState extends State<CustomFormTextfield> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: widget.onSaved,
       maxLines: widget.textFieldLength,
       onChanged: widget.onChanged,
       obscureText: widget.isPassword ? obscureText : false,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return widget.validateMessage;
+          return 'Field is requierd!';
         }
         return null;
       },
