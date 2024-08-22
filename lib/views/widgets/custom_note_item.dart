@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes/cubits/cubit/notes_cubit.dart';
 import 'package:notes/models/note_model.dart';
 
 import '../../helpers/show_confirm_dialoge.dart';
@@ -44,6 +46,7 @@ class NoteItem extends StatelessWidget {
                       var confirmed = await showConfirmationDialog(context);
                       if (confirmed == true) {
                         note.delete();
+                        BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                       }
                     },
                     icon: const Icon(

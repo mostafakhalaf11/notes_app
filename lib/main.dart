@@ -5,6 +5,7 @@ import 'package:notes/constants.dart';
 import 'package:notes/models/note_model.dart';
 import 'package:notes/simple_bloc_observer.dart';
 
+import 'cubits/cubit/notes_cubit.dart';
 import 'views/edit_note_view.dart';
 import 'views/notes_view.dart';
 
@@ -21,15 +22,18 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(brightness: Brightness.dark, fontFamily: 'Poppins'),
-      routes: {
-        NotesView.id: (context) => const NotesApp(),
-        EditNoteView.id: (context) => const EditNoteView(),
-      },
-      // initialRoute: NotesView.id,
-      home: const NotesView(),
+    return BlocProvider(
+      create: (context) => NotesCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(brightness: Brightness.dark, fontFamily: 'Poppins'),
+        routes: {
+          NotesView.id: (context) => const NotesApp(),
+          EditNoteView.id: (context) => const EditNoteView(),
+        },
+        // initialRoute: NotesView.id,
+        home: const NotesView(),
+      ),
     );
   }
 }
