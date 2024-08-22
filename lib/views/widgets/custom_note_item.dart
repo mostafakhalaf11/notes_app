@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes/models/note_model.dart';
 
+import '../../helpers/show_confirm_dialoge.dart';
 import '../edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
@@ -39,7 +40,12 @@ class NoteItem extends StatelessWidget {
                     ),
                   ),
                   trailing: IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      var confirmed = await showConfirmationDialog(context);
+                      if (confirmed == true) {
+                        note.delete();
+                      }
+                    },
                     icon: const Icon(
                       FontAwesomeIcons.trash,
                       color: Colors.black,

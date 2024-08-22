@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes/cubits/notes_cubit/notes_cubit.dart';
+import '../../cubits/cubit/notes_cubit.dart';
 import 'notes_list_view.dart';
 
 class NotesViewBody extends StatefulWidget {
