@@ -4,9 +4,14 @@ import 'custom_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String? appBarTiltle;
-  final IconData icon;
+  final Widget icon;
+  final void Function()? onPressed;
+
   const CustomAppBar(
-      {super.key, required this.appBarTiltle, required this.icon});
+      {super.key,
+      required this.appBarTiltle,
+      required this.icon,
+      this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +22,7 @@ class CustomAppBar extends StatelessWidget {
         ),
         actions: [
           CustomIcon(
+            onPressed: onPressed,
             icon: icon,
           ),
         ]);

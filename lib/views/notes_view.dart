@@ -10,12 +10,14 @@ class NotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(60),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
         child: CustomAppBar(
-          appBarTiltle: 'Notes',
-          icon: Icons.search,
-        ),
+            onPressed: () {},
+            appBarTiltle: 'Notes',
+            icon: const Icon(
+              Icons.search,
+            )),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

@@ -18,7 +18,11 @@ class NoteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, EditNoteView.id);
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return EditNoteView(
+            note: note,
+          );
+        }));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -46,6 +50,7 @@ class NoteItem extends StatelessWidget {
                       var confirmed = await showConfirmationDialog(context);
                       if (confirmed == true) {
                         note.delete();
+                        // ignore: use_build_context_synchronously
                         BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                       }
                     },

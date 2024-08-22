@@ -1,39 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes/cubits/cubit/notes_cubit.dart';
+import 'package:notes/models/note_model.dart';
 import 'package:notes/views/widgets/custom_button.dart';
 import 'package:notes/views/widgets/custom_text_field.dart';
 
-class EditNoteViewBody extends StatelessWidget {
-  const EditNoteViewBody({super.key});
+import 'custom_app_bar.dart';
+
+class EditNoteViewBody extends StatefulWidget {
+  final NoteModel note;
+  const EditNoteViewBody({super.key, required this.note});
 
   @override
+  State<EditNoteViewBody> createState() => _EditNoteViewBodyState();
+}
+
+class _EditNoteViewBodyState extends State<EditNoteViewBody> {
+  String? title, content;
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: ListView(
-        children: [
-          const SizedBox(
-            height: 50,
-          ),
-          const CustomFormTextfield(
-            textLabel: Text('Title'),
-            hintText: 'Update note title here',
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const CustomFormTextfield(
-            textLabel: Text('Content'),
-            hintText: 'Update note content here',
-            textFieldLength: 5,
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-          CustomButton(
-            onTap: () {},
-            buttonLabel: 'Update',
-          )
-        ],
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: CustomAppBar(
+            onPressed: () {
+              widget.note.title = title ?? widget.note.title;
+              widget.note.subTitle = content ?? widget.note.subTitle;
+              widget.note.save();
+              Navigator.pop(context);
+              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+            },
+            appBarTiltle: 'Edit Note',
+            icon: const Icon(
+              Icons.check,
+            )),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: ListView(
+          children: [
+            const SizedBox(
+              height: 50,
+            ),
+            CustomFormTextfield(
+              onChanged: (value) {
+                title = value;
+              },
+              textLabel: const Text('Title'),
+              initialValue: widget.note.title,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomFormTextfield(
+              onChanged: (value) {
+                content = value;
+              },
+              textLabel: const Text('Content'),
+              initialValue: widget.note.subTitle,
+              textFieldLength: 5,
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            CustomButton(
+              onTap: () {
+                widget.note.title = title ?? widget.note.title;
+                widget.note.subTitle = content ?? widget.note.subTitle;
+                widget.note.save();
+                Navigator.pop(context);
+                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+              },
+              buttonLabel: 'Update',
+            )
+          ],
+        ),
       ),
     );
   }

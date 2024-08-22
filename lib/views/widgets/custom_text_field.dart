@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../helpers/build_borders.dart';
 
 class CustomFormTextfield extends StatefulWidget {
-  final String? hintText;
+  final String? hintText, initialValue;
   final int? textFieldLength;
   final void Function(String)? onChanged;
   final void Function(String?)? onSaved;
@@ -16,7 +16,8 @@ class CustomFormTextfield extends StatefulWidget {
       this.isPassword = false,
       this.textLabel,
       this.textFieldLength,
-      this.onSaved});
+      this.onSaved,
+      this.initialValue});
 
   @override
   State<CustomFormTextfield> createState() => _CustomFormTextfieldState();
@@ -28,6 +29,7 @@ class _CustomFormTextfieldState extends State<CustomFormTextfield> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: widget.initialValue,
       onSaved: widget.onSaved,
       maxLines: widget.textFieldLength,
       onChanged: widget.onChanged,
