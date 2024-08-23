@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes/constants.dart';
 import 'package:notes/models/note_model.dart';
 import 'package:notes/simple_bloc_observer.dart';
-import 'cubits/cubit/notes_cubit.dart';
+import 'cubits/notes_cubit/notes_cubit.dart';
 import 'views/notes_view.dart';
 
 void main() async {
